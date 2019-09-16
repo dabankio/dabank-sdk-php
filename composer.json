@@ -1,0 +1,21 @@
+{
+    "name": "dabank/sdk",
+    "type": "standard",
+    "description": "dabank interface for PHP",
+    "homepage": "https://github.com/php-pds/skeleton",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "dabank\\sdk\\": "src/sdk"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "dabank\\sdk\\": "tests/sdk"
+        }
+    },
+    "bin": ["bin/dabank-sdk"],
+    "require-dev": {
+        "phpunit/phpunit": "^8.3"
+    }
+}
