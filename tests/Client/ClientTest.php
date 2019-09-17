@@ -1,6 +1,6 @@
 <?php
 
-namespace dabank\sdk\tests\client;
+namespace dabank\sdk\tests\Client;
 
 use \PHPUnit\Framework\TestCase;
 use \dabank\sdk\tests\TestFixtures;
@@ -20,14 +20,14 @@ class ClientTest extends TestCase {
     }
 
     public function clientProvider() {
-        $baseUrl = 'http://dabank.gnway.cc:28080/api/v3/';
+        $gateway = 'http://dabank.gnway.cc:28080/api/v3/';
         $apiVersion = '';
         $secretKey = 'sdk-test';
         $privKey = TestFixtures::$privateKey;
         $pubKey = TestFixtures::$publicKey;
 
         return new \dabank\sdk\Client(
-            $baseUrl,
+            $gateway,
             $apiVersion,
             $secretKey,
             $privKey,

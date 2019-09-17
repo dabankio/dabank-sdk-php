@@ -1,6 +1,6 @@
 <?php
 
-namespace dabank\sdk\tests\crypto;
+namespace dabank\sdk\tests\Crypto;
 
 use \PHPUnit\Framework\TestCase;
 use \dabank\sdk\tests\TestFixtures;

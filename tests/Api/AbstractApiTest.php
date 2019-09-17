@@ -1,8 +1,6 @@
 <?php
 namespace dabank\sdk\tests\Api;
 
-use PHPUnit\Framework\TestCase;
-
 class AbstractApiTest extends TestCase {
 
   // public function testAddDefaultParamsToRequestParams() {
