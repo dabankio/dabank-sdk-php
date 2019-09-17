@@ -1,6 +1,7 @@
 <?php
 
 namespace dabank\sdk\api;
+use dabank\sdk\api\model\ApiResult;
 
 class AbstractApi {
 
@@ -11,11 +12,30 @@ class AbstractApi {
   }
 
   protected function post($path, array $params = [], array $requestHeaders = []) {
-    // 签名
-    return $this->client->createJsonBody($params);
+    $body = $this->createJsonBody($params);
+    return $this->postRaw($path, $body, $requestHeaders);
   }
 
   protected function postRaw($path, $body, array $requestHeaders = []) {
+    $resp = $this->client->getRequester()->execute($path, $body, $requestHeaders);
+    $parsed = json_decode($resp, true);
+    return new ApiResult($parsed);
+  }
 
+  public function createJsonBody(array $params = []) {
+    $defaultParams = [
+      'key' => $this->client->getSecretKey(),
+      'request_time' => $this->client->getTimestamp(),
+    ];
+    $realParams = array_merge($params, $defaultParams);
+    $realParams['sign'] = $this->client->sign($realParams);
+
+    return array_map(function($value){
+      if (is_scalar($value)) {
+        return strval($value);
+      } else {
+        return $value;
+      }
+    }, $realParams);
   }
 }

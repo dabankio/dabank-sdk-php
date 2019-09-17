@@ -11,7 +11,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "dabank\\sdk\\": "tests/sdk"
+            "dabank\\sdk\\tests\\": "tests"
         }
     },
     "bin": ["bin/dabank-sdk"],

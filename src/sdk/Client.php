@@ -21,7 +21,8 @@ class Client {
     string $apiVersion,
     string $secretKey,
     string $privKey,
-    string $pubKey
+    string $pubKey,
+    Requester $requester = null
   ) {
     $this->baseUrl = $baseUrl;
     $this->apiVersion = $apiVersion;
@@ -30,6 +31,7 @@ class Client {
     $this->pubKey = $pubKey;
 
     $this->signer = new crypto\rsa\RSASigner($this->privKey);
+    $this->requester = $requester === null ? new CurlRequester($baseUrl) : $requester;
   }
 
   public function api($name) {
@@ -37,8 +39,13 @@ class Client {
       case 'transfer':
         $api = new api\Transfer($this);
         break;
+      case 'address':
+        $api = new api\Address($this);
+        break;
+      case 'debug':
+        $api = new api\Debug($this);
+        break;
       default:
-
     }
     return $api;
   }
@@ -47,17 +54,20 @@ class Client {
     return $this->api($name);
   }
 
-  public function createJsonBody(array $params = []) {
-    $defaultParams = [
-      'key' => $this->secretKey,
-      'request_time' => $this->getTimestamp(),
-    ];
-    $realParams = array_merge($params, $defaultParams);
-    $realParams['sign'] = $this->signer->sign($realParams);
-    return $realParams;
-  }
 
   public function getTimestamp() {
     return time();
+  }
+
+  public function getSecretKey() {
+    return $this->secretKey;
+  }
+
+  public function getRequester() {
+    return $this->requester;
+  }
+
+  public function sign(array $message) {
+    return $this->signer->sign($message);
   }
 }

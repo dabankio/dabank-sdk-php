@@ -1,27 +1,10 @@
 <?php
 
-use \PHPUnit\Framework\TestCase;
+namespace dabank\sdk\tests;
 
-class RSATest extends TestCase {
+class TestFixtures {
 
-  /**
-   * @dataProvider signDataProvider
-   */
-  public function testSign($privKey, $params, $expected) {
-    $signer = new \dabank\sdk\crypto\rsa\RSASigner($privKey);
-    $this->assertEquals($expected, $signer->sign($params));
-  }
-
-  /**
-   * @dataProvider verifyDataProvider
-   */
-  public function testVerify($pubKey, $params, $expected) {
-    $verifier = new \dabank\sdk\crypto\rsa\RSAVerifier($pubKey);
-    $this->assertEquals($expected, $verifier->verify($params, $params['sign']));
-  }
-
-  public function signDataProvider() {
-    $privKey = <<<EOT
+  static public $privateKey = <<<EOT
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA2POOIYD2PHrXGow6ff4o1CRWCONDz9uKMPdpotwWb0SzQ7UF
 sXdQpoC8C/Rar80Dwnc1V10wcOEJ7WlkAZCDqdUxRyWnLAQ11dTso0POaUckaZbk
@@ -50,22 +33,8 @@ Hgmln691wiT6Y3DgIpxlpVOURiT7nqWQta63dx6WMvOpG2Ia3lK2m+44AhZFw/Zo
 r51r7+39mPEEECE3GagGBawky7S+rl+zIX4ezCzbENbXBfJTX6EBFQ==
 -----END RSA PRIVATE KEY-----
 EOT;
-    return [
-      [
-        $privKey,
-        [
-          'symbol' => 'btc',
-          'request_time' => '1708',
-          'key' => '6ddb7389-ca53-593c-8a7c-510962eef59c',
-          'sign' => 'excluded'
-        ],
-        'gmnb+6WHxeGegNwzf8hKCLRPknPcH7tA07m69gy24YkefyQ8yZIq6CyRX5/bUEHDaPSvE2TG6a5m+51Nr9P1lnOPTdtkPF7x07i3A2s7rQ+NQ6llPfAqWnR2b3QFsQg6Lo5qo9JH20nIR0teAiJwtWyMJoFTw2AJZgesUNrqQz1SRufM6oAxfwQfY8fWhWcohBXPQpxhplIbWC38ofgT4UufFDJ0qDu6ELE3DAbJuo/J2EAiRCL2D7Cr6PyKCJwZUjJayq0W23euhoA4+ngqJKS7V9Q4Pf0Eh84kMDGmTHSFpCQmoz9CYjCN6/A8nIuAjpTXnQjG4uxN/+8VuAepAA=='
-      ]
-    ];
-  }
 
-  public function verifyDataProvider() {
-    $pubKey = <<<EOT
+  static public $publicKey = <<<EOT
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2POOIYD2PHrXGow6ff4o
 1CRWCONDz9uKMPdpotwWb0SzQ7UFsXdQpoC8C/Rar80Dwnc1V10wcOEJ7WlkAZCD
@@ -76,17 +45,4 @@ KwRb+4lCJ6tw7sQ4+RfOhQbUFkDYDhL1k8TDUh71+qzLFEZuDG7KktRziNq0PeE7
 4wIDAQAB
 -----END PUBLIC KEY-----
 EOT;
-    return [
-      [
-        $pubKey,
-        [
-          'symbol' => 'btc',
-          'request_time' => '1708',
-          'key' => '6ddb7389-ca53-593c-8a7c-510962eef59c',
-          'sign' => 'gmnb+6WHxeGegNwzf8hKCLRPknPcH7tA07m69gy24YkefyQ8yZIq6CyRX5/bUEHDaPSvE2TG6a5m+51Nr9P1lnOPTdtkPF7x07i3A2s7rQ+NQ6llPfAqWnR2b3QFsQg6Lo5qo9JH20nIR0teAiJwtWyMJoFTw2AJZgesUNrqQz1SRufM6oAxfwQfY8fWhWcohBXPQpxhplIbWC38ofgT4UufFDJ0qDu6ELE3DAbJuo/J2EAiRCL2D7Cr6PyKCJwZUjJayq0W23euhoA4+ngqJKS7V9Q4Pf0Eh84kMDGmTHSFpCQmoz9CYjCN6/A8nIuAjpTXnQjG4uxN/+8VuAepAA=='
-        ],
-        1
-      ]
-    ];
-  }
 }
