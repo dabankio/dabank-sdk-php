@@ -45,8 +45,14 @@ class Client {
       case 'debug':
         $api = new api\Debug($this);
         break;
+      case 'app':
+        $api = new api\App($this);
+        break;
+      case 'utils':
+        $api = new api\Utils($this);
+        break;
       default:
-        throw new Exception('invalid api name');
+        throw new \Exception('invalid api name');
     }
     return $api;
   }

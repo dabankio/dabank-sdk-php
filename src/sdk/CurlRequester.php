@@ -31,6 +31,7 @@ class CurlRequester extends Requester {
     }
     $data_string = json_encode($params);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+    echo "data_string = $data_string";
     $response = curl_exec($ch);
     if ($response === false) {
         curl_close($ch);

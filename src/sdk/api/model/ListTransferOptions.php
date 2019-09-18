@@ -2,29 +2,11 @@
 
 namespace dabank\sdk\api\model;
 
-class ListTransfersRequest {
-  private $transferType;
-  private $symbol;
+class ListTransferOptions {
   private $startAt;
   private $endAt;
   private $address;
   private $status;
-
-  public function getTransferType() {
-    return $this->transferType;
-  }
-
-  public function setTransferType($transferType) {
-    return $this->transferType = $transferType;
-  }
-
-  public function getSymbol() {
-    return $this->symbol;
-  }
-
-  public function setSymbol($symbol) {
-    $this->symbol = $symbol;
-  }
 
   public function getStartAt() {
     return $this->startAt;
@@ -48,13 +30,5 @@ class ListTransfersRequest {
 
   public function setAddress($address) {
     return $this->address = $address;
-  }
-
-  public function getStatus() {
-    return $this->status;
-  }
-
-  public function setStatus($status) {
-    $this->status = $status;
   }
 }

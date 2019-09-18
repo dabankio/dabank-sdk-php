@@ -43,7 +43,7 @@ $dabankPubKey = <<<EOT
 EOT;
 
 $dabankGateway = 'http://dabank.gnway.cc:28080/api/v3';
-$appId = 'sdk-test';
+$appId = 'superdabank';
 
 return new Client(
   // getenv('DABANK_GATEWAY'),

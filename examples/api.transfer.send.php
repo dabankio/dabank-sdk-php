@@ -4,9 +4,9 @@ $client = require __DIR__ . '/init.php';
 
 $resp = $client->api('transfer')->send(
   'BTC',
-  '2NDymPgvGhvut7moBdrAUWobvgAkaQkN1yp',
-  '2MuYbwALdZtaLvoWuPAg787BPKdXu5F99ZQ',
-  0.001,
+  '2MyQ9BWaxh3bBBNEkeJxJ2Z4qWXwrafyTT3',
+  '2MvGiGqEswQDytscPPhLztAHJaVpqRxgFuM',
+  0.002,
   uniqid()
 );
 
@@ -15,5 +15,5 @@ if (!$resp->isSuccess()) {
   return;
 }
 
-echo 'transfer status = ' . $res->getData()['status'] . "\n" . 'transfer id = ' . $res->getData()['transferID'] . "\n";
+print_r($resp->getData());
 

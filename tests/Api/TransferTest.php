@@ -17,7 +17,8 @@ class TransferTest extends TestCase {
         "status" => "TRANSFER_PENDING",
         "transfer_id" => 3357652
         ],
-        "request_id" => 2294582
+        "request_id" => 2294582,
+        "httpStatusCode" => 200
       ]
     );
 

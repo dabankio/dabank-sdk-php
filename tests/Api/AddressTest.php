@@ -16,7 +16,8 @@ class AddressTest extends TestCase {
 "data": {
 "address": "1PSLARAWzGA2uayPJztAeSohSvHDqYgxvr"
 },
-"request_id": 2294861
+"request_id": 2294861,
+"httpStatusCode": 200
 }
 EOF;
     $rawData = json_decode($rawStr, true);
@@ -46,7 +47,8 @@ EOF;
 "data": {
   "verify": true
 },
-"request_id": 2294861
+"request_id": 2294861,
+"httpStatusCode": 200
 }
 EOF;
     $rawData = json_decode($rawStr, true);

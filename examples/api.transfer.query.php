@@ -1,13 +1,41 @@
 <?php
 
+use dabank\sdk\api\model\ListTransfersRequest;
+use dabank\sdk\api\model\PageInfo;
+
 $client = require __DIR__ . '/init.php';
 
-$res = $client->api('address')->newAddress('BTC', uniqid('sdk_test_'));
+//////// list pending transfers
+$resp = $client->api('transfer')->listPendingTransfers('BTC', 'OUT', PageInfo::of(10, 1));
 
-if (!$res.isSuccess()) {
-  echo $res.errInfo();
+if (!$resp->isSuccess()) {
+  echo $resp->errInfo();
   return;
 }
 
-echo $res->getData()['address'];
+print_r($resp->getData());
 
+/////////////// list successful transfers
+$req = new ListTransfersRequest();
+$req->setTransferType('OUT');
+$req->setSymbol('BTC');
+
+$resp = $client->api('transfer')->listSuccessTransfers('BTC', 'OUT', PageInfo::of(10, 1));
+
+if (!$resp->isSuccess()) {
+  echo $resp->errInfo();
+  return;
+}
+
+print_r($resp->getData());
+
+//////////////// summarize
+
+$resp = $client->api('transfer')->sum('BTC', 'OUT');
+
+if (!$resp->isSuccess()) {
+  echo $resp->errInfo();
+  return;
+}
+
+print_r($resp->getData());
