@@ -1,7 +1,7 @@
 <?php
 
-use dabank\sdk\api\model\ListTransfersRequest;
-use dabank\sdk\api\model\PageInfo;
+use Bigbang\api\model\ListTransfersRequest;
+use Bigbang\api\model\PageInfo;
 
 $client = require __DIR__ . '/init.php';
 

@@ -1,17 +1,17 @@
 {
-    "name": "dabank/sdk",
+    "name": "bigbang/bigbang-api",
     "type": "standard",
-    "description": "dabank interface for PHP",
-    "homepage": "https://github.com/php-pds/skeleton",
+    "description": "bigbang interface for PHP",
+    "homepage": "https://github.com/lomocoin/bigbang-sdk-php",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "dabank\\sdk\\": "src/sdk"
+            "Bigbang\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "dabank\\sdk\\tests\\": "tests"
+            "Bigbang\\Tests\\": "test/Tests/"
         }
     },
     "bin": ["bin/dabank-sdk"],

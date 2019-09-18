@@ -1,15 +1,10 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+namespace Bigbang\Tests;
 
-use Bigbang\Client;
+class TestFixtures {
 
-ini_set('html_errors', '0');
-ini_set('error_log', 'logs/php-error.log');
-
-//(new Dotenv\Dotenv(__DIR__))->load();
-
-$appPrivKey = <<<EOT
+  static public $privateKey = <<<EOT
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA2POOIYD2PHrXGow6ff4o1CRWCONDz9uKMPdpotwWb0SzQ7UF
 sXdQpoC8C/Rar80Dwnc1V10wcOEJ7WlkAZCDqdUxRyWnLAQ11dTso0POaUckaZbk
@@ -39,20 +34,15 @@ r51r7+39mPEEECE3GagGBawky7S+rl+zIX4ezCzbENbXBfJTX6EBFQ==
 -----END RSA PRIVATE KEY-----
 EOT;
 
-$dabankPubKey = <<<EOT
+  static public $publicKey = <<<EOT
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2POOIYD2PHrXGow6ff4o
+1CRWCONDz9uKMPdpotwWb0SzQ7UFsXdQpoC8C/Rar80Dwnc1V10wcOEJ7WlkAZCD
+qdUxRyWnLAQ11dTso0POaUckaZbkZB4ZQ56tetB5QaZ2eIdD62HAnPDdADLuFFCN
+eVWXkmRc6tKuPJ87Cn6LGjBeHAkBLww4oRsNSLW8aHUukljWTuHtt9wTMOHlLYX4
+PWqoQ6up3Gvy0LcVXL6wqJb9agJcbIJxUuI2LDubo7pEFSKus1nVz8b4qEQkwe98
+KwRb+4lCJ6tw7sQ4+RfOhQbUFkDYDhL1k8TDUh71+qzLFEZuDG7KktRziNq0PeE7
+4wIDAQAB
+-----END PUBLIC KEY-----
 EOT;
-
-$dabankGateway = 'http://dabank.gnway.cc:28080/api/v3';
-$appId = 'superdabank';
-
-return new Client(
-  // getenv('DABANK_GATEWAY'),
-  $dabankGateway,
-  '1',
-  // getenv('APP_ID'),
-  $appId,
-  //getenv('APP_PRIV_KEY'),
-  //getenv('DABANK_PUB_KEY')
-  $appPrivKey,
-  $dabankPubKey
-);
+}
