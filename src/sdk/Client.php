@@ -4,34 +4,34 @@ namespace dabank\sdk;
 
 class Client {
 
-  private $baseUrl;
+  private $gateway;
   private $apiVersion;
-  private $secretKey;
+  private $appSecretKey;
   // 私钥
-  private $privKey;
+  private $appPrivKey;
   // 公钥
-  private $pubKey;
+  private $dabankPubKey;
 
   private $signer;
 
   private $verifier;
 
   public function __construct(
-    string $baseUrl,
+    string $gateway,
     string $apiVersion,
-    string $secretKey,
-    string $privKey,
-    string $pubKey,
+    string $appSecretKey,
+    string $appPrivKey,
+    string $dabankPubKey,
     Requester $requester = null
   ) {
-    $this->baseUrl = $baseUrl;
+    $this->gateway = $gateway;
     $this->apiVersion = $apiVersion;
-    $this->secretKey = $secretKey;
-    $this->privKey = $privKey;
-    $this->pubKey = $pubKey;
+    $this->appSecretKey = $appSecretKey;
+    $this->privKey = $appPrivKey;
+    $this->dabankPubKey = $dabankPubKey;
 
     $this->signer = new crypto\rsa\RSASigner($this->privKey);
-    $this->requester = $requester === null ? new CurlRequester($baseUrl) : $requester;
+    $this->requester = $requester === null ? new CurlRequester($gateway) : $requester;
   }
 
   public function api($name) {
@@ -46,6 +46,7 @@ class Client {
         $api = new api\Debug($this);
         break;
       default:
+        throw new Exception('invalid api name');
     }
     return $api;
   }
@@ -60,7 +61,7 @@ class Client {
   }
 
   public function getSecretKey() {
-    return $this->secretKey;
+    return $this->appSecretKey;
   }
 
   public function getRequester() {

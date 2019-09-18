@@ -34,4 +34,29 @@ EOF;
   protected function getApiClass() {
     return \dabank\sdk\api\Address::class;
   }
+
+  /**
+   * @test
+   */
+  public function shouldVerifyAddress() {
+    $rawStr = <<<EOF
+{
+"err_code": "",
+"err_info": "",
+"data": {
+  "verify": true
+},
+"request_id": 2294861
+}
+EOF;
+    $rawData = json_decode($rawStr, true);
+    $expectedValue = new ApiResult($rawData);
+
+    $api = $this->getApiMock();
+    $api->expects($this->once())
+      ->method('post')
+      ->with('/checkAddress')
+      ->will($this->returnValue($expectedValue));
+    $this->assertEquals($expectedValue, $api->checkAddress('BTC', 'some address'));
+  }
 }

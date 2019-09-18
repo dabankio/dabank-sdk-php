@@ -17,8 +17,9 @@ class AbstractApi {
   }
 
   protected function postRaw($path, $body, array $requestHeaders = []) {
-    $resp = $this->client->getRequester()->execute($path, $body, $requestHeaders);
-    $parsed = json_decode($resp, true);
+    $statusAndResp = $this->client->getRequester()->execute($path, $body, $requestHeaders);
+    $parsed = json_decode($statusAndResp[1], true);
+    $parsed['httpStatusCode'] = $statusAndResp[0];
     return new ApiResult($parsed);
   }
 

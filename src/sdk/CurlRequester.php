@@ -36,7 +36,8 @@ class CurlRequester extends Requester {
         curl_close($ch);
         throw new CurlException(curl_error($ch), curl_errno($ch));
     }
+    $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    return $response;
+    return [$httpStatusCode, $response];
   }
 }
