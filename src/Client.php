@@ -6,10 +6,10 @@ class Client {
 
   private $gateway;
   private $apiVersion;
-  private $appSecretKey;
-  // 私钥
+  private $appId;
+  // 应用端私钥
   private $appPrivKey;
-  // 公钥
+  // dabank公钥
   private $dabankPubKey;
 
   private $signer;
@@ -19,18 +19,19 @@ class Client {
   public function __construct(
     string $gateway,
     string $apiVersion,
-    string $appSecretKey,
+    string $appId,
     string $appPrivKey,
     string $dabankPubKey,
     Requester $requester = null
   ) {
     $this->gateway = $gateway;
     $this->apiVersion = $apiVersion;
-    $this->appSecretKey = $appSecretKey;
+    $this->appId = $appId;
     $this->privKey = $appPrivKey;
     $this->dabankPubKey = $dabankPubKey;
 
     $this->signer = new Crypto\RSA\RSASigner($this->privKey);
+    $this->verifier = new Crypto\RSA\RSAVerifier($this->dabankPubKey);
     $this->requester = $requester === null ? new CurlRequester($gateway) : $requester;
   }
 
@@ -61,13 +62,12 @@ class Client {
     return $this->api($name);
   }
 
-
   public function getTimestamp() {
     return time();
   }
 
-  public function getSecretKey() {
-    return $this->appSecretKey;
+  public function getAppId() {
+    return $this->appId;
   }
 
   public function getRequester() {
@@ -76,5 +76,9 @@ class Client {
 
   public function sign(array $message) {
     return $this->signer->sign($message);
+  }
+
+  public function verify(array $message, $sig) {
+    return $this->verifier->verify($message, $sig);
   }
 }

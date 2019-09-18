@@ -25,7 +25,7 @@ class AbstractApi {
 
   public function createJsonBody(array $params = []) {
     $defaultParams = [
-      'key' => $this->client->getSecretKey(),
+      'key' => $this->client->getAppId(),
       'request_time' => $this->client->getTimestamp(),
     ];
     $realParams = array_merge($params, $defaultParams);
