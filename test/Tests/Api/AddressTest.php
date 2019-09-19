@@ -1,65 +1,52 @@
 <?php
 
 namespace Bigbang\Tests\Api;
+
 use Bigbang\Api\Address;
-use Bigbang\Api\Model\ApiResult;
+use Bigbang\Api\Model\CheckAddressResult;
 
-class AddressTest extends TestCase {
-
-  /**
-   * @test
-   */
-  public function shouldGetNewAddress() {
-    $rawStr = <<<EOF
+class AddressTest extends TestCase
 {
-"err_code": "",
-"err_info": "",
-"data": {
-"address": "1PSLARAWzGA2uayPJztAeSohSvHDqYgxvr"
-},
-"request_id": 2294861,
-"httpStatusCode": 200
-}
-EOF;
-    $rawData = json_decode($rawStr, true);
-    $expectedValue = new ApiResult($rawData);
 
-    $api = $this->getApiMock();
-    $api->expects($this->once())
-      ->method('post')
-      ->with('/address')
-      ->will($this->returnValue($expectedValue));
+    /**
+     * @test
+     */
+    public function shouldGetNewAddress()
+    {
+        $expectedValue = "8084fe3a-fd29-5c7f-95c0-d70c30040e34";
 
-    $this->assertEquals($expectedValue, $api->newAddress('BTC', 'some user'));
-  }
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('post')
+            ->with('/address')
+            ->will($this->returnValue($expectedValue));
 
-  protected function getApiClass() {
-    return Address::class;
-  }
+        $this->assertEquals($expectedValue, $api->newAddress('BTC', 'some user'));
+    }
 
-  /**
-   * @test
-   */
-  public function shouldVerifyAddress() {
-    $rawStr = <<<EOF
-{
-"err_code": "",
-"err_info": "",
-"data": {
-  "verify": true
-},
-"request_id": 2294861,
-"httpStatusCode": 200
-}
-EOF;
-    $rawData = json_decode($rawStr, true);
-    $expectedValue = new ApiResult($rawData);
+    /**
+     * @test
+     */
+    public function shouldVerifyAddress()
+    {
+        $returnValue = [
+            "verify" => true,
+            "err_msg" => ''
+        ];
+        $expectedValue = CheckAddressResult::create($returnValue);
 
-    $api = $this->getApiMock();
-    $api->expects($this->once())
-      ->method('post')
-      ->with('/checkAddress')
-      ->will($this->returnValue($expectedValue));
-    $this->assertEquals($expectedValue, $api->checkAddress('BTC', 'some address'));
-  }
+        $api = $this->getApiMock();
+        $api->expects($this->once())
+            ->method('post')
+            ->with('/checkAddress')
+            ->will($this->returnValue($returnValue));
+        $got = $api->checkAddress('BTC', 'some address');
+        $this->assertEquals($expectedValue->getVerifyResult(), $got->getVerifyResult());
+        $this->assertEquals($expectedValue->getErrMsg(), $got->getErrMsg());
+    }
+
+    protected function getApiClass()
+    {
+        return Address::class;
+    }
 }

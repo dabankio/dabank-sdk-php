@@ -1,41 +1,46 @@
 <?php
+
 namespace Bigbang\Tests\Api;
 
 use Bigbang\Api\AbstractApi;
 
-class AbstractApiTest extends TestCase {
+class AbstractApiTest extends TestCase
+{
 
-  /**
-   * @test
-   */
-  public function shouldAppendDefaultParamsToRequestParams() {
+    /**
+     * @test
+     */
+    public function shouldAppendDefaultParamsToRequestParams()
+    {
 
-    $client = $this->getMockBuilder(\Bigbang\Client::class)
-    ->setMethods(['sign'])
-    ->disableOriginalConstructor()->getMock();
+        $client = $this->getMockBuilder(\Bigbang\Client::class)
+            ->setMethods(['sign'])
+            ->disableOriginalConstructor()->getMock();
 
-    $client->expects($this->any())->method('sign')->willReturn('sig value');
+        $client->expects($this->any())->method('sign')->willReturn('sig value');
 
-    $api = $this->getAbstractApiObject($client);
+        $api = $this->getAbstractApiObject($client);
 
-    $reqParams = [
-        'symbol' => 'btc',
-        'to' => '8845f520-acb3-5863-9288-47a1c9dacfa2',
-    ];
-    $body = $api->createJsonBody($reqParams);
-    $this->assertArrayHasKey('request_time', $body);
-    $this->assertArrayHasKey('key', $body);
-    $this->assertArrayHasKey('sign', $body);
-  }
+        $reqParams = [
+            'symbol' => 'btc',
+            'to' => '8845f520-acb3-5863-9288-47a1c9dacfa2',
+        ];
+        $body = $api->createJsonBody($reqParams);
+        $this->assertArrayHasKey('request_time', $body);
+        $this->assertArrayHasKey('key', $body);
+        $this->assertArrayHasKey('sign', $body);
+    }
 
-  protected function getAbstractApiObject($client) {
-    return $this->getMockBuilder($this->getApiClass())
-        ->setMethods(null)
-        ->setConstructorArgs([$client])
-        ->getMock();
-  }
+    protected function getAbstractApiObject($client)
+    {
+        return $this->getMockBuilder($this->getApiClass())
+            ->setMethods(null)
+            ->setConstructorArgs([$client])
+            ->getMock();
+    }
 
-  protected function getApiClass() {
-    return AbstractApi::class;
-  }
+    protected function getApiClass()
+    {
+        return AbstractApi::class;
+    }
 }

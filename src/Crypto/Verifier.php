@@ -2,6 +2,7 @@
 
 namespace Bigbang\Crypto;
 
-interface Verifier {
+interface Verifier
+{
     function verify(array $data, string $sig);
 }

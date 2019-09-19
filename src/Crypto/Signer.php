@@ -2,7 +2,8 @@
 
 namespace Bigbang\Crypto;
 
-interface Signer {
+interface Signer
+{
     function sign(array $data);
 }
 

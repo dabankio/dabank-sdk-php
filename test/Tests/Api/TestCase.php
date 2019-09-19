@@ -6,40 +6,44 @@ use Bigbang\Client;
 use Bigbang\Requester;
 use Bigbang\Tests\TestFixtures;
 
-abstract class TestCase extends \PHPUnit\Framework\TestCase {
+abstract class TestCase extends \PHPUnit\Framework\TestCase
+{
 
-  abstract protected function getApiClass();
+    public function noop()
+    {
 
-  protected function getApiMock() {
-    $requester = $this->getMockBuilder(Requester::class)
-      ->setMethods(['execute'])
-      ->setConstructorArgs([[$this, 'noop'], ''])
-      ->getMock();
+    }
 
-    $requester->expects($this->any())->method('execute');
+    protected function getApiMock()
+    {
+        $requester = $this->getMockBuilder(Requester::class)
+            ->setMethods(['execute'])
+            ->setConstructorArgs([[$this, 'noop'], ''])
+            ->getMock();
 
-    $baseUrl = 'http://dabank.gnway.cc:28080/api/v3/';
-    $apiVersion = '';
-    $secretKey = 'sdk-test';
-    $privKey = TestFixtures::$privateKey;
-    $pubKey = TestFixtures::$publicKey;
+        $requester->expects($this->any())->method('execute');
 
-    $client = new Client(
-        $baseUrl,
-        $apiVersion,
-        $secretKey,
-        $privKey,
-        $pubKey,
-        $requester
-    );
+        $baseUrl = 'http://dabank.gnway.cc:28080/api/v3/';
+        $apiVersion = '';
+        $secretKey = 'sdk-test';
+        $privKey = TestFixtures::$privateKey;
+        $pubKey = TestFixtures::$publicKey;
 
-    return $this->getMockBuilder($this->getApiClass())
-      ->setMethods(['post'])
-      ->setConstructorArgs([$client])
-      ->getMock();
-  }
+        $client = new Client(
+            $baseUrl,
+            $apiVersion,
+            $secretKey,
+            $privKey,
+            $pubKey,
+            true,
+            $requester
+        );
 
-  public function noop() {
+        return $this->getMockBuilder($this->getApiClass())
+            ->setMethods(['post'])
+            ->setConstructorArgs([$client])
+            ->getMock();
+    }
 
-  }
+    abstract protected function getApiClass();
 }

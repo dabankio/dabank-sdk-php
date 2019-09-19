@@ -1,9 +1,15 @@
 <?php
+
 namespace Bigbang\Api;
 
-class App extends AbstractApi {
+use Bigbang\Api\Model\GetAccountsResult;
 
-  public function accounts() {
-    return $this->post("appAccount", []);
-  }
+class App extends AbstractApi
+{
+
+    public function accounts()
+    {
+        $resp = $this->post("appAccount", []);
+        return GetAccountsResult::create($resp);
+    }
 }

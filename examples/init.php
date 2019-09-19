@@ -46,13 +46,14 @@ $dabankGateway = 'http://dabank.gnway.cc:28080/api/v3';
 $appId = 'superdabank';
 
 return new Client(
-  // getenv('DABANK_GATEWAY'),
-  $dabankGateway,
-  '1',
-  // getenv('APP_ID'),
-  $appId,
-  //getenv('APP_PRIV_KEY'),
-  //getenv('DABANK_PUB_KEY')
-  $appPrivKey,
-  $dabankPubKey
+// getenv('DABANK_GATEWAY'),
+    $dabankGateway,
+    '1',
+    // getenv('APP_ID'),
+    $appId,
+    //getenv('APP_PRIV_KEY'),
+    //getenv('DABANK_PUB_KEY')
+    $appPrivKey,
+    $dabankPubKey,
+    true
 );

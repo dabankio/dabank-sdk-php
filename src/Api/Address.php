@@ -2,19 +2,26 @@
 
 namespace Bigbang\Api;
 
-class Address extends AbstractApi {
+use Bigbang\Api\Model\CheckAddressResult;
 
-  public function newAddress($symbol, $userId) {
-    return $this->post("/address", [
-      "symbol" => $symbol,
-      "user_id" => $userId,
-    ]);
-  }
+class Address extends AbstractApi
+{
 
-  public function checkAddress($symbol, $address) {
-    return $this->post("/checkAddress", [
-      "symbol" => $symbol,
-      "address" => $address,
-    ]);
-  }
+    public function newAddress($symbol, $userId)
+    {
+        $resp = $this->post("/address", [
+            "symbol" => $symbol,
+            "user_id" => $userId,
+        ]);
+        return $resp;
+    }
+
+    public function checkAddress($symbol, $address)
+    {
+        $resp = $this->post("/checkAddress", [
+            "symbol" => $symbol,
+            "address" => $address,
+        ]);
+        return CheckAddressResult::create($resp);
+    }
 }

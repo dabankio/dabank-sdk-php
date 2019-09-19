@@ -1,21 +1,23 @@
 {
-    "name": "bigbang/bigbang-api",
-    "type": "standard",
-    "description": "bigbang interface for PHP",
-    "homepage": "https://github.com/lomocoin/bigbang-sdk-php",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Bigbang\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Bigbang\\Tests\\": "test/Tests/"
-        }
-    },
-    "bin": ["bin/dabank-sdk"],
-    "require-dev": {
-        "phpunit/phpunit": "^8.3"
+  "name": "bigbang/bigbang-api",
+  "type": "standard",
+  "description": "bigbang interface for PHP",
+  "homepage": "https://github.com/lomocoin/bigbang-sdk-php",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Bigbang\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Bigbang\\Tests\\": "test/Tests/"
+    }
+  },
+  "bin": [
+    "bin/dabank-sdk"
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^8.3"
+  }
 }

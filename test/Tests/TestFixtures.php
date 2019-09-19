@@ -2,9 +2,10 @@
 
 namespace Bigbang\Tests;
 
-class TestFixtures {
+class TestFixtures
+{
 
-  static public $privateKey = <<<EOT
+    static public $privateKey = <<<EOT
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA2POOIYD2PHrXGow6ff4o1CRWCONDz9uKMPdpotwWb0SzQ7UF
 sXdQpoC8C/Rar80Dwnc1V10wcOEJ7WlkAZCDqdUxRyWnLAQ11dTso0POaUckaZbk
@@ -34,7 +35,7 @@ r51r7+39mPEEECE3GagGBawky7S+rl+zIX4ezCzbENbXBfJTX6EBFQ==
 -----END RSA PRIVATE KEY-----
 EOT;
 
-  static public $publicKey = <<<EOT
+    static public $publicKey = <<<EOT
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2POOIYD2PHrXGow6ff4o
 1CRWCONDz9uKMPdpotwWb0SzQ7UFsXdQpoC8C/Rar80Dwnc1V10wcOEJ7WlkAZCD

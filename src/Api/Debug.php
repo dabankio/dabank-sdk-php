@@ -2,13 +2,16 @@
 
 namespace Bigbang\api;
 
-class Debug extends AbstractApi {
+class Debug extends AbstractApi
+{
 
-  public function hello() {
-    return $this->post("/hello", []);
-  }
+    public function hello()
+    {
+        return $this->post("/hello", []);
+    }
 
-  public function time() {
-    return $this->post("/time", []);
-  }
+    public function time()
+    {
+        return $this->post("/time", []);
+    }
 }
