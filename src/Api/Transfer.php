@@ -17,24 +17,23 @@ class Transfer extends AbstractApi {
     ]);
   }
 
-  public function listPendingTransfers($symbol, $transferType, PageInfo $page, ListTransferOptions $opts = null) {
+  public function listPendingTransfers($symbol, PageInfo $page, ListTransferOptions $opts = null) {
     return $this->post(
       '/transfers/pending',
-      $this->makeListTransferParams($symbol, $transferType, $page, $opts)
+      $this->makeListTransferParams($symbol, $page, $opts)
     );
   }
 
-  public function listSuccessTransfers($symbol, $transferType, PageInfo $page, ListTransferOptions $opts = null) {
+  public function listSuccessTransfers($symbol, PageInfo $page, ListTransferOptions $opts = null) {
     return $this->post(
       '/transfers/success',
-      $this->makeListTransferParams($symbol, $transferType, $page, $opts)
+      $this->makeListTransferParams($symbol, $page, $opts)
     );
   }
 
-  protected function makeListTransferParams($symbol, $transferType, PageInfo $page, ListTransferOptions $opts = null) {
+  protected function makeListTransferParams($symbol, PageInfo $page, ListTransferOptions $opts = null) {
     $params = [
       'symbol' => $symbol,
-      'transfer_type' => $transferType,
       'limit' => $page->getPageSize(),
       'p' => $page->getPageNo(),
     ];
@@ -42,6 +41,9 @@ class Transfer extends AbstractApi {
       $params['start_at'] = $opts->getStartAt();
       $params['end_at'] = $opts->getEndAt();
       $params['address'] = $opts->getAddress();
+    }
+    if (!isset($params['transfer_type'])) {
+      $params['transfer_type'] = 'ALL';
     }
     return $params;
   }

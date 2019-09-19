@@ -7,6 +7,7 @@ class ListTransferOptions {
   private $endAt;
   private $address;
   private $status;
+  private $transferType;
 
   public function getStartAt() {
     return $this->startAt;
@@ -30,5 +31,13 @@ class ListTransferOptions {
 
   public function setAddress($address) {
     return $this->address = $address;
+  }
+
+  public function getTransferType() {
+    return $this->transferType;
+  }
+
+  public function setTransferType($transferType) {
+    return $this->transferType = $transferType;
   }
 }

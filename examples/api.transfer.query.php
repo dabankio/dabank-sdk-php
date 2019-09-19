@@ -1,12 +1,12 @@
 <?php
 
-use Bigbang\api\model\ListTransfersRequest;
-use Bigbang\api\model\PageInfo;
+use Bigbang\Api\Model\ListTransfersRequest;
+use Bigbang\Api\Model\PageInfo;
 
 $client = require __DIR__ . '/init.php';
 
 //////// list pending transfers
-$resp = $client->api('transfer')->listPendingTransfers('BTC', 'OUT', PageInfo::of(10, 1));
+$resp = $client->api('transfer')->listPendingTransfers('BTC', PageInfo::of(10, 1));
 
 if (!$resp->isSuccess()) {
   echo $resp->errInfo();
@@ -20,7 +20,7 @@ $req = new ListTransfersRequest();
 $req->setTransferType('OUT');
 $req->setSymbol('BTC');
 
-$resp = $client->api('transfer')->listSuccessTransfers('BTC', 'OUT', PageInfo::of(10, 1));
+$resp = $client->api('transfer')->listSuccessTransfers('BTC', PageInfo::of(10, 1));
 
 if (!$resp->isSuccess()) {
   echo $resp->errInfo();
