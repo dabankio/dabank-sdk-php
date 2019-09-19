@@ -8,7 +8,7 @@ class GetAccountsResult
 
     public static function create(array $parsed)
     {
-        return array_map('Bigbang\Api\Model\Account::create', $parsed);
+        return array_map('Bigbang\Api\Model\AddressBalance::create', $parsed);
     }
 
     /**

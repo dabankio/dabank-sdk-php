@@ -4,7 +4,7 @@ namespace Bigbang\Api\Model;
 
 use Bigbang\Common\Utils;
 
-class Account
+class AddressBalance
 {
 
     private $symbol;
