@@ -4,10 +4,8 @@ namespace Bigbang\Api;
 
 class Utils extends AbstractApi
 {
-
-    public function ConvertBCHAddress($address)
+    public function convertBCHAddress($address)
     {
-        return $this->post('/bchAddressConvert', ['address' => $address]);
+        return $this->post('/bchAddrConvert', ['address' => $address]);
     }
-
 }

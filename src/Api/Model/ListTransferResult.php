@@ -6,7 +6,15 @@ use Bigbang\Common\Utils;
 
 class ListTransferResult
 {
+    /**
+     * 总记录数目
+     * @var int
+     */
     private $total;
+    /**
+     * 当前页数据集
+     * @var array
+     */
     private $transfers;
 
     public static function create(array $parsed)

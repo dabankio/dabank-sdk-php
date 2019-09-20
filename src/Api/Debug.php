@@ -1,6 +1,6 @@
 <?php
 
-namespace Bigbang\api;
+namespace Bigbang\Api;
 
 class Debug extends AbstractApi
 {

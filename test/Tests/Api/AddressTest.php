@@ -14,12 +14,15 @@ class AddressTest extends TestCase
     public function shouldGetNewAddress()
     {
         $expectedValue = "8084fe3a-fd29-5c7f-95c0-d70c30040e34";
+        $returnValue = [
+          'address' => $expectedValue
+        ];
 
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('post')
             ->with('/address')
-            ->will($this->returnValue($expectedValue));
+            ->will($this->returnValue($returnValue));
 
         $this->assertEquals($expectedValue, $api->newAddress('BTC', 'some user'));
     }

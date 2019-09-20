@@ -7,16 +7,58 @@ use Bigbang\Common\Utils;
 
 class Transfer
 {
+    /**
+     * 平台上交易id
+     * @var int
+     */
     private $transferId;
+    /**
+     * 币种
+     * @var string
+     */
     private $symbol;
+    /**
+     * @var string
+     */
     private $fromAddress;
+    /**
+     * @var string
+     */
     private $toAddress;
+    /**
+     * 交易金额
+     * @var string
+     */
     private $coins;
+    /**
+     * 手续费
+     * @var string
+     */
     private $fee;
+    /**
+     * 链上交易id
+     * @var string
+     */
     private $txId;
+    /**
+     * 确认数
+     * @var int
+     */
     private $confirms;
+    /**
+     * 确认时间
+     * @var int
+     */
     private $confirmedAt;
+    /**
+     * 上链时间
+     * @var int
+     */
     private $transferredAt;
+    /**
+     * 交易状态
+     * @var string
+     */
     private $status;
 
     public static function create(array $parsed)
@@ -41,39 +83,7 @@ class Transfer
     }
 
     /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param mixed $status
-     */
-    public function setStatus($status): void
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getConfirmedAt()
-    {
-        return $this->confirmedAt;
-    }
-
-    /**
-     * @param mixed $confirmedAt
-     */
-    public function setConfirmedAt($confirmedAt): void
-    {
-        $this->confirmedAt = $confirmedAt;
-    }
-
-    /**
-     * @return mixed
+     * @return int
      */
     public function getTransferId()
     {
@@ -81,15 +91,15 @@ class Transfer
     }
 
     /**
-     * @param mixed $transferId
+     * @param int $transferId
      */
-    public function setTransferId($transferId): void
+    public function setTransferId($transferId)
     {
         $this->transferId = $transferId;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSymbol()
     {
@@ -97,15 +107,15 @@ class Transfer
     }
 
     /**
-     * @param mixed $symbol
+     * @param string $symbol
      */
-    public function setSymbol($symbol): void
+    public function setSymbol($symbol)
     {
         $this->symbol = $symbol;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFromAddress()
     {
@@ -113,15 +123,15 @@ class Transfer
     }
 
     /**
-     * @param mixed $fromAddress
+     * @param string $fromAddress
      */
-    public function setFromAddress($fromAddress): void
+    public function setFromAddress($fromAddress)
     {
         $this->fromAddress = $fromAddress;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getToAddress()
     {
@@ -129,15 +139,15 @@ class Transfer
     }
 
     /**
-     * @param mixed $toAddress
+     * @param string $toAddress
      */
-    public function setToAddress($toAddress): void
+    public function setToAddress($toAddress)
     {
         $this->toAddress = $toAddress;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCoins()
     {
@@ -145,15 +155,15 @@ class Transfer
     }
 
     /**
-     * @param mixed $coins
+     * @param string $coins
      */
-    public function setCoins($coins): void
+    public function setCoins($coins)
     {
         $this->coins = $coins;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFee()
     {
@@ -161,15 +171,15 @@ class Transfer
     }
 
     /**
-     * @param mixed $fee
+     * @param string $fee
      */
-    public function setFee($fee): void
+    public function setFee($fee)
     {
         $this->fee = $fee;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTxId()
     {
@@ -177,15 +187,15 @@ class Transfer
     }
 
     /**
-     * @param mixed $txId
+     * @param string $txId
      */
-    public function setTxId($txId): void
+    public function setTxId($txId)
     {
         $this->txId = $txId;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getConfirms()
     {
@@ -193,15 +203,31 @@ class Transfer
     }
 
     /**
-     * @param mixed $confirms
+     * @param int $confirms
      */
-    public function setConfirms($confirms): void
+    public function setConfirms($confirms)
     {
         $this->confirms = $confirms;
     }
 
     /**
-     * @return mixed
+     * @return int
+     */
+    public function getConfirmedAt()
+    {
+        return $this->confirmedAt;
+    }
+
+    /**
+     * @param int $confirmedAt
+     */
+    public function setConfirmedAt($confirmedAt)
+    {
+        $this->confirmedAt = $confirmedAt;
+    }
+
+    /**
+     * @return int
      */
     public function getTransferredAt()
     {
@@ -209,10 +235,26 @@ class Transfer
     }
 
     /**
-     * @param mixed $transferredAt
+     * @param int $transferredAt
      */
-    public function setTransferredAt($transferredAt): void
+    public function setTransferredAt($transferredAt)
     {
         $this->transferredAt = $transferredAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 }

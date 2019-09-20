@@ -4,11 +4,28 @@ namespace Bigbang\Api\Model;
 
 use Bigbang\Common\Utils;
 
+/**
+ * 地址余额
+ * Class AddressBalance
+ * @package Bigbang\Api\Model
+ */
 class AddressBalance
 {
 
+    /**
+     * 币种
+     * @var string
+     */
     private $symbol;
+    /**
+     * 地址
+     * @var string
+     */
     private $address;
+    /**
+     * 余额
+     * @var float
+     */
     private $balance;
 
     public static function create(array $parsed)
@@ -22,7 +39,7 @@ class AddressBalance
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSymbol()
     {
@@ -30,7 +47,7 @@ class AddressBalance
     }
 
     /**
-     * @param mixed $symbol
+     * @param string $symbol
      */
     public function setSymbol($symbol)
     {
@@ -38,7 +55,7 @@ class AddressBalance
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getAddress()
     {
@@ -46,7 +63,7 @@ class AddressBalance
     }
 
     /**
-     * @param mixed $address
+     * @param string $address
      */
     public function setAddress($address)
     {
@@ -54,7 +71,7 @@ class AddressBalance
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getBalance()
     {
@@ -62,7 +79,7 @@ class AddressBalance
     }
 
     /**
-     * @param mixed $balance
+     * @param float $balance
      */
     public function setBalance($balance)
     {

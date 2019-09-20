@@ -43,11 +43,14 @@ class AbstractApi
     {
         $statusAndResp = $this->client->getRequester()->execute($path, $body, $requestHeaders);
         $parsed = json_decode($statusAndResp[1], true);
-        $parsed['httpStatusCode'] = $statusAndResp[0];
-        $apiRes = new ApiResult($parsed);
-        if (!$apiRes->isSuccess()) {
-            throw new HttpException($apiRes->errInfo());
+        if (is_array($parsed)) {
+            $parsed['httpStatusCode'] = $statusAndResp[0];
+            $apiRes = new ApiResult($parsed);
+            if (!$apiRes->isSuccess()) {
+                throw new HttpException($apiRes->errInfo());
+            }
+            return $apiRes->getData();
         }
-        return $apiRes->getData();
+        return $parsed;
     }
 }

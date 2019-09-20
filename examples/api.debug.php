@@ -2,20 +2,19 @@
 
 $client = require __DIR__ . '/init.php';
 
-///////// new address
+///////// hello
 try {
-    $res = $client->api('address')->newAddress('BTC', uniqid('sdk_test_'));
-    $addr = $res;
-    echo 'address = ' . $addr . "\n";
+    $res = $client->api('debug')->hello();
+    print_r($res);
 } catch (\Exception $e) {
     http_response_code(500);
     print_r($e);
     return;
 }
 
-////////// check address
+////////// time
 try {
-    $res = $client->api('address')->checkAddress('BTC', $addr);
+    $res = $client->api('debug')->time();
     print_r($res);
 } catch (\Exception $e) {
     http_response_code(500);
