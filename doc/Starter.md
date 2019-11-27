@@ -14,7 +14,17 @@
 
 ## 安装
 
-待补充.
+### composer
+
+参考composer使用文档.
+
+### 源码安装
+
+下载源代码, 然后在你的项目代码使用autoloader:
+```php
+require '/path/to/bigbang-sdk-php/autoloader.php';
+BigbangAutoloader::register();
+```
 
 ## 如何使用Api
 
