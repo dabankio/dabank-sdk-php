@@ -11,7 +11,7 @@ class RSASigner implements Signer
     private $privKey;
     private $keyNameOfSig;
 
-    public function __construct(string $privKey)
+    public function __construct($privKey)
     {
         $this->privKey = $privKey;
         $this->keyNameOfSig = 'sign';

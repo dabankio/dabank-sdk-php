@@ -16,7 +16,7 @@ class RSAVerifier implements Verifier
         $this->keyNameOfSig = 'sign';
     }
 
-    function verify(array $message, string $sig)
+    function verify(array $message, $sig)
     {
         $msg = Helper::clearTextMessage($message, [$this->keyNameOfSig]);
         $publicId = openssl_pkey_get_public($this->pubKey);
