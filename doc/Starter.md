@@ -1,5 +1,27 @@
 # 开始使用
 
+## 生成RSA公钥和私钥
+
+### windows
+
+```
+# 生成私钥
+openssl genrsa -out rsa.private 2048
+
+# 生成公钥
+openssl rsa -in rsa.private -out rsa.public -pubout -outform PEM
+```
+
+### linux
+
+```
+# 生成私钥
+openssl genrsa -out rsa.private 2048
+
+# 生成公钥
+openssl rsa -in rsa.private -out rsa.public -pubout -outform PEM
+```
+
 ## 注册bigbang账号
 
 注册bigbang账号(注册方式待补充). 并上传你的RSA公钥, 妥善保管你的RSA私钥和bigbang分配给你的App id及bigbang的公钥.
