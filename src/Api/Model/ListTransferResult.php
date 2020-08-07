@@ -38,7 +38,7 @@ class ListTransferResult
     /**
      * @param mixed $total
      */
-    public function setTotal($total): void
+    public function setTotal($total)
     {
         $this->total = $total;
     }
