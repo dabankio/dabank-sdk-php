@@ -13,12 +13,12 @@ class Transfer extends AbstractApi
 {
 
     /**
-     * 发起一笔交易.
-     * @param string $symbol
-     * @param string $from
-     * @param string $to
-     * @param float $amount
-     * @param string $uniqueID
+     * 发起一笔交易(转帐)
+     * @param string $symbol 币种符号
+     * @param string $from 转帐的源地址
+     * @param string $to 转帐的目标地址
+     * @param float $amount 转帐金额
+     * @param string $uniqueID 代表业务唯一性的标识. 比如, 若使用商户的订单号作为唯一标识, 其意义是, 将本次转帐与该订单建立一一对应关系.
      * @return SendTransferResult
      */
     public function send($symbol, $from, $to, $amount, $uniqueID)
