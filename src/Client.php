@@ -88,6 +88,7 @@ class Client
         return $this->signer->sign($message);
     }
 
+    // Returns 1 if the signature is correct, 0 if it is incorrect, and -1 on error.
     public function verify(array $message, $sig)
     {
         return $this->verifier->verify($message, $sig);
